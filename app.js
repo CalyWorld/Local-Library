@@ -9,6 +9,17 @@ const usersRouter = require("./routes/users");
 
 const app = express();
 
+const passkey = process.env.PASSWORD;
+
+const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
+const mongoDB =
+  "mongodb+srv://myAtlasDBUser:calyworldJS@myatlasclusteredu.4ov15tl.mongodb.net/local_library?retryWrites=true&w=majority";
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
