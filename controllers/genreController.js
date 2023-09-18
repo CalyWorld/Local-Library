@@ -23,7 +23,7 @@ exports.genre_detail = asyncHandler(async (req, res, next) => {
     err.status = 404;
     return next(err);
   }
-  res.render("genre_detail", {
+  res.render("genre_details", {
     title: "Genre Detail",
     genre: genre,
     genre_books: booksInGenre,
