@@ -67,6 +67,7 @@ exports.author_create_post = [
         author: author,
         errors: errors.array(),
       });
+      return;
     } else {
       await author.save();
       res.redirect(author.url);
