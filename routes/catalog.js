@@ -12,17 +12,17 @@ const book_instance_controller = require("../controllers/bookinstanceController"
 router.get("/", book_controller.index);
 
 //GET REQUEST FOR CREATING A BOOK
-router.get("book/create", book_controller.book_create_get);
+router.get("/book/create", book_controller.book_create_get);
 //POST REQUEST FOR SUBMITTING A BOOK
-router.post("book/create", book_controller.book_create_post);
+router.post("/book/create", book_controller.book_create_post);
 //GET REQUEST FOR DELETING A BOOK
-router.get("book/:id/delete", book_controller.book_delete_get);
+router.get("/book/:id/delete", book_controller.book_delete_get);
 //POST REQUEST FOR DELETING A BOOK
-router.post("book/:id/delete", book_controller.book_delete_post);
+router.post("/book/:id/delete", book_controller.book_delete_post);
 //GET REQUEST TO UPDATE BOOK
-router.get("book/:id/update", book_controller.book_update_get);
+router.get("/book/:id/update", book_controller.book_update_get);
 //POST REQUEST TO UPDATE BOOK
-router.post("book/:id/update", book_controller.book_update_post);
+router.post("/book/:id/update", book_controller.book_update_post);
 //GET REQUEST TO GET BOOK DETAILS
 router.get("/book/:id", book_controller.book_detail);
 //GET REQUEST TO GET LIST OF BOOKS
