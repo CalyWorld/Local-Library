@@ -76,7 +76,19 @@ exports.author_create_post = [
 ];
 
 exports.author_delete_get = asyncHandler(async (req, res, next) => {
-  res.send(`not implemented: author delete GET`);
+  const [author, allBooksByAuthors] = await Promise.all([
+    Author.findById(req.params.id).exec(),
+    Book.find({ author: req.params.id }, "title summary").exec(),
+  ]);
+
+  if (author === null) {
+    res.redirect("/catalog/authors");
+  }
+  res.render("author_delete", {
+    title: "Delete Author",
+    author: author,
+    author_books: allBooksByAuthors,
+  });
 });
 
 exports.author_delete_post = asyncHandler(async (req, res, next) => {
