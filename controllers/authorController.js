@@ -1,6 +1,6 @@
 const Author = require("../models/author");
 const asyncHandler = require("express-async-handler");
-const Book = require("../models/author");
+const Book = require("../models/book");
 const { body, validationResult } = require("express-validator");
 
 exports.author_list = asyncHandler(async (req, res, next) => {
@@ -13,9 +13,9 @@ exports.author_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.author_detail = asyncHandler(async (req, res, next) => {
-  const [author, allBooksByAuthors] = await Promise.all([
+  const [author, allBooksByAuthor] = await Promise.all([
     Author.findById(req.params.id).exec(),
-    Book.find({ genre: req.params.id }, "title summary").exec(),
+    Book.find({ author: req.params.id }, "title summary").exec(),
   ]);
   if (author === null) {
     const err = new Error("Author not found");
@@ -25,7 +25,7 @@ exports.author_detail = asyncHandler(async (req, res, next) => {
   res.render("author_detail", {
     title: "Author Detail",
     author: author,
-    author_books: allBooksByAuthors,
+    author_books: allBooksByAuthor,
   });
 });
 
@@ -75,7 +75,7 @@ exports.author_create_post = [
 ];
 
 exports.author_delete_get = asyncHandler(async (req, res, next) => {
-  const [author, allBooksByAuthors] = await Promise.all([
+  const [author, allBooksByAuthor] = await Promise.all([
     Author.findById(req.params.id).exec(),
     Book.find({ author: req.params.id }, "title summary").exec(),
   ]);
@@ -86,20 +86,20 @@ exports.author_delete_get = asyncHandler(async (req, res, next) => {
   res.render("author_delete", {
     title: "Delete Author",
     author: author,
-    author_books: allBooksByAuthors,
+    author_books: allBooksByAuthor,
   });
 });
 
 exports.author_delete_post = asyncHandler(async (req, res, next) => {
-  const [author, allBooksByAuthors] = await Promise.all([
+  const [author, allBooksByAuthor] = await Promise.all([
     Author.findById(req.params.id).exec(),
     Book.find({ author: req.params.id }, "title summary").exec(),
   ]);
-  if (allBooksByAuthors.length > 0) {
+  if (allBooksByAuthor.length > 0) {
     res.render("author_delete", {
       title: "Delete Author",
       author: author,
-      author_books: allBooksByAuthors,
+      author_books: allBooksByAuthor,
     });
   } else {
     await Author.findByIdAndRemove(req.body.authorid);
