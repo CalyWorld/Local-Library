@@ -132,11 +132,11 @@ exports.book_create_post = [
 exports.book_delete_get = asyncHandler(async (req, res, next) => {
   const [book, allBookInstances] = await Promise.all([
     Book.findById(req.params.id).exec(),
-    BookInstance.find({ book: req.params.id }).exec(),
+    BookInstance.find({ book: req.params.id }).populate("book").exec(),
   ]);
 
   if (book === null) {
-    res.redirect("/catalog/authors");
+    res.redirect("/catalog/books");
   }
   res.render("book_delete", {
     title: "Delete Book",
