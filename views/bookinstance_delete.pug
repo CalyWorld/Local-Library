@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    p #[strong Title:]
+    a(href=selected_book_instance.book.url) #{selected_book_instance.book.title}
+    p #[strong Imprint:] #{selected_book_instance.imprint}
+    p Delete book instance
+
+    form(method='POST' action='')
+      div.form-group
+        input#authorid.form-control(type='hidden',name='bookinstanceid', required='true', value=selected_book_instance._id )
+
+      button.btn.btn-primary(type='submit') Delete
