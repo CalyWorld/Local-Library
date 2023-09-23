@@ -69,7 +69,6 @@ exports.bookinstance_create_post = [
         errors: errors.array(),
         bookinstance: bookInstance,
       });
-      return;
     } else {
       await bookInstance.save();
       res.redirect(bookInstance.url);
