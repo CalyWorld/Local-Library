@@ -48,7 +48,7 @@ exports.author_create_post = [
     .optional({ values: "falsy" })
     .isISO8601()
     .toDate(),
-  body("date_of_birth", "Invalid date of death")
+  body("date_of_death", "Invalid date of death")
     .optional({ values: "falsy" })
     .isISO8601()
     .toDate(),
