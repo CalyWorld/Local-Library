@@ -12,8 +12,9 @@ const usersRouter = require("./routes/users");
 const catalogRouter = require("./routes/catalog");
 
 const app = express();
-require("dotenv").config();
 
+require("dotenv").config();
+process.env.NODE_ENV = "production";
 mongoose.set("strictQuery", false);
 const mongoDB = process.env.MONGODB_URI;
 console.log(mongoDB);
