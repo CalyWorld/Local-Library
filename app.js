@@ -9,7 +9,6 @@ const helmet = require("helmet");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const catalogRouter = require("./routes/catalog");
-const compression = require("compression");
 
 const app = express();
 require("dotenv").config();
