@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const mongoose = require("mongoose");
 const compression = require("compression");
 const helmet = require("helmet");
 
@@ -13,9 +14,9 @@ const catalogRouter = require("./routes/catalog");
 const app = express();
 require("dotenv").config();
 
-const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 const mongoDB = process.env.MONGODB_URI;
+console.log(mongoDB);
 
 main().catch((err) => console.log(err));
 async function main() {
